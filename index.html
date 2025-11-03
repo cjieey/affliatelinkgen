@@ -275,8 +275,8 @@ async function generateLink() {
   // Encode the Shopee link
   const encodedLink = encodeURIComponent(rawLink);
 
-  // Build full affiliate link
-  const fullLink = `https://s.shopee.ph/an_redir?origin_link=${encodedLink}?&affiliate_id=${AFFILIATE_ID}&sub_id=${subId}`;
+  // Build full affiliate link (fixed the extra ?)
+  const fullLink = `https://s.shopee.ph/an_redir?origin_link=${encodedLink}&affiliate_id=${AFFILIATE_ID}&sub_id=${subId}`;
 
   // Display two buttons instead of showing the link text
   document.getElementById('output').innerHTML = `
