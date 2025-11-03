@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee Affiliate Link Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #fff5f0, #ffe0d6); /* Light orange gradient for Shopee theme */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h2 {
+            color: #ff5b00;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.6); /* Semi-transparent for glass effect */
+            backdrop-filter: blur(10px); /* Frosted glass blur */
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+        }
+        label {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        label i {
+            margin-right: 0.5rem;
+            color: #ff5b00;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(221, 221, 221, 0.5); /* Semi-transparent border */
+            font-size: 1rem;
+            background: rgba(249, 249, 249, 0.8); /* Slight transparency */
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        textarea:focus, input:focus {
+            border-color: #ff5b00;
+            box-shadow: 0 0 0 2px rgba(255, 91, 0, 0.2); /* Glow effect */
+            outline: none;
+        }
+        button {
+            width: 100%;
+            background: rgba(255, 91, 0, 0.8); /* Semi-transparent orange */
+            backdrop-filter: blur(5px);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 91, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button i {
+            margin-right: 0.5rem;
+        }
+        button:hover {
+            background: rgba(225, 77, 0, 0.9);
+            transform: translateY(-2px); /* Slight lift for liquid feel */
+        }
+        #output {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        #output h3 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .action-btn {
+            width: 100%;
+            background: rgba(255, 91, 0, 0.8);
+            backdrop-filter: blur(5px);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 91, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .action-btn i {
+            margin-right: 0.5rem;
+        }
+        .action-btn:last-child {
+            margin-bottom: 0;
+        }
+        .action-btn:hover {
+            background: rgba(225, 77, 0, 0.9);
+            transform: translateY(-2px);
+        }
+        .copy-btn {
+            background: rgba(0, 122, 255, 0.8); /* Blue for copy */
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+        }
+        .copy-btn:hover {
+            background: rgba(0, 102, 214, 0.9);
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Shopee Affiliate Link Generator</h2>
+
+    <label for="link"><i class="fas fa-link"></i>Paste Shopee product link:</label>
+    <textarea id="link" rows="3" placeholder="https://shopee.ph/your-product-link"></textarea>
+
+    <label for="subId"><i class="fas fa-id-badge"></i>Your Sub ID (optional):</label>
+    <input type="text" id="subId" placeholder="e.g. 12345-aaaa-bbbb-cccc-dddd">
+
+    <button onclick="generateLink()"><i class="fas fa-magic"></i>Generate Affiliate Link</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+const AFFILIATE_ID = '13300500010'; // Your affiliate ID
+
+function generateLink() {
+  const rawLink = document.getElementById('link').value.trim();
+  const subId = document.getElementById('subId').value.trim() || 'default-subid';
+
+  if (!rawLink) {
+    alert('Please enter a Shopee product link.');
+    return;
+  }
+
+  // Encode the Shopee link
+  const encodedLink = encodeURIComponent(rawLink);
+
+  // Build full affiliate link
+  const fullLink = `https://s.shopee.ph/an_redir?origin_link=${encodedLink}?&affiliate_id=${AFFILIATE_ID}&sub_id=${subId}`;
+
+  // Display two buttons instead of showing the link text
+  document.getElementById('output').innerHTML = `
+    <h3>✅ Affiliate Link Ready!</h3>
+    <button class="action-btn" onclick="window.open('${fullLink}', '_blank')"><i class="fas fa-external-link-alt"></i>Open Link</button>
+    <button class="action-btn copy-btn" onclick="copyLink('${fullLink}')"><i class="fas fa-copy"></i>Copy Link</button>
+  `;
+}
+
+function copyLink(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Affiliate link copied to clipboard!');
+  });
+}
+</script>
+
+</body>
+</html>
