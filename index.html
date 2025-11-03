@@ -275,14 +275,17 @@ async function generateLink() {
   // Encode the Shopee link
   const encodedLink = encodeURIComponent(rawLink);
 
-  // Build full affiliate link (fixed the extra ?)
+  // Build full affiliate link
   const fullLink = `https://s.shopee.ph/an_redir?origin_link=${encodedLink}&affiliate_id=${AFFILIATE_ID}&sub_id=${subId}`;
+
+  // Escape single quotes in fullLink for JavaScript string
+  const escapedFullLink = fullLink.replace(/'/g, "\\'");
 
   // Display two buttons instead of showing the link text
   document.getElementById('output').innerHTML = `
     <h3>✅ Affiliate Link Ready!</h3>
-    <button class="action-btn" onclick="window.open('${fullLink}', '_blank')"><i class="fas fa-external-link-alt"></i>Open Link</button>
-    <button class="action-btn copy-btn" onclick="copyLink('${fullLink}')"><i class="fas fa-copy"></i>Copy Link</button>
+    <button class="action-btn" onclick="window.open('${escapedFullLink}', '_blank')"><i class="fas fa-external-link-alt"></i>Open Link</button>
+    <button class="action-btn copy-btn" onclick="copyLink('${escapedFullLink}')"><i class="fas fa-copy"></i>Copy Link</button>
   `;
 }
 
