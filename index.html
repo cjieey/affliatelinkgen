@@ -1,181 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopee Affiliate Link Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #fff5f0, #ffe0d6); /* Light orange gradient for Shopee theme */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        h2 {
-            color: #ff5b00;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .container {
-            width: 100%;
-            max-width: 480px;
-            background: rgba(255, 255, 255, 0.6); /* Semi-transparent for glass effect */
-            backdrop-filter: blur(10px); /* Frosted glass blur */
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            position: relative; /* For positioning the counters */
-        }
-        #visit-counter {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 0.875rem;
-            color: #555;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 4px 8px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        #link-counter {
-            position: absolute;
-            top: 2.5rem;
-            right: 1rem;
-            font-size: 0.875rem;
-            color: #555;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 4px 8px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        label {
-            display: flex;
-            align-items: center;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-            color: #555;
-        }
-        label i {
-            margin-right: 0.5rem;
-            color: #ff5b00;
-        }
-        textarea, input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(221, 221, 221, 0.5); /* Semi-transparent border */
-            font-size: 1rem;
-            background: rgba(249, 249, 249, 0.8); /* Slight transparency */
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        textarea:focus, input:focus {
-            border-color: #ff5b00;
-            box-shadow: 0 0 0 2px rgba(255, 91, 0, 0.2); /* Glow effect */
-            outline: none;
-        }
-        button {
-            width: 100%;
-            background: rgba(255, 91, 0, 0.8); /* Semi-transparent orange */
-            backdrop-filter: blur(5px);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background 0.2s, transform 0.2s;
-            box-shadow: 0 4px 12px rgba(255, 91, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        button i {
-            margin-right: 0.5rem;
-        }
-        button:hover {
-            background: rgba(225, 77, 0, 0.9);
-            transform: translateY(-2px); /* Slight lift for liquid feel */
-        }
-        #output {
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        #output h3 {
-            font-size: 1rem;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        .action-btn {
-            width: 100%;
-            background: rgba(255, 91, 0, 0.8);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            transition: background 0.2s, transform 0.2s;
-            box-shadow: 0 4px 12px rgba(255, 91, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .action-btn i {
-            margin-right: 0.5rem;
-        }
-        .action-btn:last-child {
-            margin-bottom: 0;
-        }
-        .action-btn:hover {
-            background: rgba(225, 77, 0, 0.9);
-            transform: translateY(-2px);
-        }
-        .copy-btn {
-            background: rgba(0, 122, 255, 0.8); /* Blue for copy */
-            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
-        }
-        .copy-btn:hover {
-            background: rgba(0, 102, 214, 0.9);
-        }
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.5rem;
-                border-radius: 16px;
-            }
-            #visit-counter {
-                top: 0.75rem;
-                right: 0.75rem;
-            }
-            #link-counter {
-                top: 2rem;
-                right: 0.75rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopee Affiliate Link Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #fff5f0, #ffe0d6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h2 {
+      color: #ff5b00;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    p.description {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+    }
+    #visit-counter, #link-counter {
+      position: absolute;
+      right: 1rem;
+      font-size: 0.875rem;
+      color: #555;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    #visit-counter { top: 1rem; }
+    #link-counter { top: 2.5rem; }
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+    label i { margin-right: 0.5rem; color: #ff5b00; }
+    textarea, input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(221, 221, 221, 0.5);
+      font-size: 1rem;
+      background: rgba(249, 249, 249, 0.8);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    textarea:focus, input:focus {
+      border-color: #ff5b00;
+      box-shadow: 0 0 0 2px rgba(255, 91, 0, 0.2);
+      outline: none;
+    }
+    button {
+      width: 100%;
+      background: rgba(255, 91, 0, 0.8);
+      backdrop-filter: blur(5px);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(255, 91, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button i { margin-right: 0.5rem; }
+    button:hover {
+      background: rgba(225, 77, 0, 0.9);
+      transform: translateY(-2px);
+    }
+    #output { margin-top: 1.5rem; text-align: center; }
+    #output h3 { font-size: 1rem; color: #333; margin-bottom: 1rem; }
+    .action-btn {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      transition: background 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .action-btn i { margin-right: 0.5rem; }
+    .open-btn {
+      background: rgba(255, 91, 0, 0.8);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 91, 0, 0.2);
+    }
+    .open-btn:hover {
+      background: rgba(225, 77, 0, 0.9);
+      transform: translateY(-2px);
+    }
+    .copy-btn {
+      background: rgba(0, 122, 255, 0.8);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+    }
+    .copy-btn:hover {
+      background: rgba(0, 102, 214, 0.9);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <div class="container">
     <div id="visit-counter">Visits: 0</div>
     <div id="link-counter">Links Generated: 0</div>
     <h2>Shopee Affiliate Link Generator</h2>
+
+    <p class="description">
+      I’ve created this web as a simple test tool. You can freely try it — just paste a Shopee product link, and it will generate a shareable link. 
+      You can send it to your family and friends so they can help you earn commission when they buy using that link.
+    </p>
 
     <label for="link"><i class="fas fa-link"></i>Paste Shopee product link:</label>
     <textarea id="link" rows="3" placeholder="https://shopee.ph/your-product-link"></textarea>
@@ -186,47 +161,36 @@
     <button onclick="generateLink()"><i class="fas fa-magic"></i>Generate Affiliate Link</button>
 
     <div id="output"></div>
-</div>
+  </div>
 
-<script>
-const AFFILIATE_ID = '13300500010'; // Your affiliate ID
-const BIN_ID = 'YOUR_JSONBIN_BIN_ID'; // Replace with your JSONBin bin ID
-const API_KEY = '$2a$10$YOUR_MASTER_KEY'; // Replace with your JSONBin master key
-const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+  <script>
+  const AFFILIATE_ID = '13300500010';
+  const BIN_ID = 'YOUR_JSONBIN_BIN_ID'; // Replace with your JSONBin bin ID
+  const API_KEY = '$2a$10$YOUR_MASTER_KEY'; // Replace with your JSONBin master key
+  const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-// Function to get visitor IP
-async function getVisitorIP() {
-  try {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-  } catch (error) {
-    console.error('Error fetching IP:', error);
-    return null;
+  async function getVisitorIP() {
+    try {
+      const res = await fetch('https://api.ipify.org?format=json');
+      const data = await res.json();
+      return data.ip;
+    } catch {
+      return null;
+    }
   }
-}
 
-// Function to fetch bin data
-async function fetchBinData() {
-  try {
-    const response = await fetch(`${BIN_URL}/latest`, {
-      headers: {
-        'X-Master-Key': API_KEY
-      }
-    });
-    if (!response.ok) throw new Error('Failed to fetch data');
-    const result = await response.json();
-    return result.record;
-  } catch (error) {
-    console.error('Error fetching bin data:', error);
-    return { totalVisits: 0, visitedIPs: [], linkCount: 0 };
+  async function fetchBinData() {
+    try {
+      const res = await fetch(`${BIN_URL}/latest`, { headers: { 'X-Master-Key': API_KEY } });
+      const result = await res.json();
+      return result.record;
+    } catch {
+      return { totalVisits: 0, visitedIPs: [], linkCount: 0 };
+    }
   }
-}
 
-// Function to update bin data
-async function updateBinData(data) {
-  try {
-    const response = await fetch(BIN_URL, {
+  async function updateBinData(data) {
+    await fetch(BIN_URL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -234,67 +198,52 @@ async function updateBinData(data) {
       },
       body: JSON.stringify(data)
     });
-    if (!response.ok) throw new Error('Failed to update data');
-  } catch (error) {
-    console.error('Error updating bin data:', error);
-  }
-}
-
-// Update visit counter on page load
-(async function updateVisitCounter() {
-  const visitorIP = await getVisitorIP();
-  if (!visitorIP) return;
-
-  let binData = await fetchBinData();
-
-  if (!binData.visitedIPs.includes(visitorIP)) {
-    binData.totalVisits += 1;
-    binData.visitedIPs.push(visitorIP);
-    await updateBinData(binData);
   }
 
-  document.getElementById('visit-counter').textContent = `Visits: ${binData.totalVisits}`;
-  document.getElementById('link-counter').textContent = `Links Generated: ${binData.linkCount}`;
-})();
+  (async function initCounters() {
+    const ip = await getVisitorIP();
+    if (!ip) return;
+    let data = await fetchBinData();
+    if (!data.visitedIPs.includes(ip)) {
+      data.visitedIPs.push(ip);
+      data.totalVisits += 1;
+      await updateBinData(data);
+    }
+    document.getElementById('visit-counter').textContent = `Visits: ${data.totalVisits}`;
+    document.getElementById('link-counter').textContent = `Links Generated: ${data.linkCount}`;
+  })();
 
-async function generateLink() {
-  const rawLink = document.getElementById('link').value.trim();
-  const subId = document.getElementById('subId').value.trim() || 'default-subid';
+  async function generateLink() {
+    const rawLink = document.getElementById('link').value.trim();
+    const subId = document.getElementById('subId').value.trim() || 'default-subid';
 
-  if (!rawLink) {
-    alert('Please enter a Shopee product link.');
-    return;
+    if (!rawLink) return alert('Please enter a Shopee product link.');
+
+    let data = await fetchBinData();
+    data.linkCount += 1;
+    await updateBinData(data);
+    document.getElementById('link-counter').textContent = `Links Generated: ${data.linkCount}`;
+
+    const encodedLink = encodeURIComponent(rawLink);
+    const fullLink = `https://s.shopee.ph/an_redir?origin_link=${encodedLink}&affiliate_id=${AFFILIATE_ID}&sub_id=${subId}`;
+
+    const output = document.getElementById('output');
+    output.innerHTML = `
+      <h3>✅ Affiliate Link Ready!</h3>
+      <button class="action-btn open-btn" id="openLink"><i class="fas fa-external-link-alt"></i>Open Link</button>
+      <button class="action-btn copy-btn" id="copyLink"><i class="fas fa-copy"></i>Copy Link</button>
+    `;
+
+    document.getElementById('openLink').addEventListener('click', () => window.open(fullLink, '_blank'));
+    document.getElementById('copyLink').addEventListener('click', () => copyLink(fullLink));
   }
 
-  // Increment link count
-  let binData = await fetchBinData();
-  binData.linkCount += 1;
-  await updateBinData(binData);
-  document.getElementById('link-counter').textContent = `Links Generated: ${binData.linkCount}`;
-
-  // Encode the Shopee link
-  const encodedLink = encodeURIComponent(rawLink);
-
-  // Build full affiliate link
-  const fullLink = `https://s.shopee.ph/an_redir?origin_link=${encodedLink}&affiliate_id=${AFFILIATE_ID}&sub_id=${subId}`;
-
-  // Escape single quotes in fullLink for JavaScript string
-  const escapedFullLink = fullLink.replace(/'/g, "\\'");
-
-  // Display two buttons instead of showing the link text
-  document.getElementById('output').innerHTML = `
-    <h3>✅ Affiliate Link Ready!</h3>
-    <button class="action-btn" onclick="window.open('${escapedFullLink}', '_blank')"><i class="fas fa-external-link-alt"></i>Open Link</button>
-    <button class="action-btn copy-btn" onclick="copyLink('${escapedFullLink}')"><i class="fas fa-copy"></i>Copy Link</button>
-  `;
-}
-
-function copyLink(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert('Affiliate link copied to clipboard!');
-  });
-}
-</script>
+  function copyLink(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Affiliate link copied to clipboard!');
+    });
+  }
+  </script>
 
 </body>
 </html>
